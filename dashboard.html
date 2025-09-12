@@ -34,7 +34,7 @@
       margin: 0;
     }
     .nav li {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
     .nav a {
       color: #f0f6fc;
@@ -42,11 +42,13 @@
       padding: 10px 15px;
       border-radius: 6px;
       display: block;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
+      cursor: pointer;
     }
     .nav a:hover, .nav a.active {
       background: #238636;
       color: #ffffff;
+      transform: scale(1.03);
     }
 
     /* Main content */
@@ -66,10 +68,23 @@
       border-radius: 8px;
       padding: 20px;
       margin-bottom: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
     .card h3 {
       margin-top: 0;
       color: #58a6ff;
+    }
+
+    /* Hide/Show sections */
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
     }
 
     /* Footer */
@@ -85,6 +100,13 @@
       left: 250px;
       right: 0;
     }
+    footer a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -92,37 +114,102 @@
   <div class="sidebar">
     <h2>Rexo Dashboard</h2>
     <ul class="nav">
-      <li><a href="#" class="active">Overview</a></li>
-      <li><a href="#">Commands</a></li>
-      <li><a href="#">Leveling</a></li>
-      <li><a href="#">Moderation</a></li>
-      <li><a href="#">Server Settings</a></li>
-      <li><a href="#">Logs</a></li>
+      <li><a class="active" onclick="showSection('overview')">Overview</a></li>
+      <li><a onclick="showSection('commands')">Commands</a></li>
+      <li><a onclick="showSection('leveling')">Leveling</a></li>
+      <li><a onclick="showSection('moderation')">Moderation</a></li>
+      <li><a onclick="showSection('settings')">Server Settings</a></li>
+      <li><a onclick="showSection('logs')">Logs</a></li>
     </ul>
   </div>
 
   <!-- Main content -->
   <div class="main">
-    <h1>Welcome to Rexo Dashboard</h1>
-    <p>Manage your server with Rexo, the professional moderation and utility bot.</p>
-
-    <div class="card">
-      <h3>⚡ Quick Actions</h3>
-      <p>• View your server’s configuration</p>
-      <p>• Manage moderation settings</p>
-      <p>• Enable or disable leveling</p>
-      <p>• Explore all bot commands</p>
+    <!-- Overview -->
+    <div id="overview" class="section active">
+      <h1>Welcome to Rexo Dashboard</h1>
+      <p>Manage your server with Rexo, the professional moderation and utility bot.</p>
+      <div class="card">
+        <h3>⚡ Quick Actions</h3>
+        <p>• View your server’s configuration</p>
+        <p>• Manage moderation settings</p>
+        <p>• Enable or disable leveling</p>
+        <p>• Explore all bot commands</p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>📊 Server Overview</h3>
-      <p>This section will show statistics about your server once integrated (like member count, active warnings, slowmode, etc).</p>
+    <!-- Commands -->
+    <div id="commands" class="section">
+      <h1>📜 Commands</h1>
+      <div class="card">
+        <h3>Core</h3>
+        <p><b>/ping</b> – Check bot latency</p>
+        <p><b>/uptime</b> – Show uptime</p>
+        <p><b>/avatar</b> – Show a user’s avatar</p>
+      </div>
+      <div class="card">
+        <h3>Moderation</h3>
+        <p><b>/kick</b>, <b>/ban</b>, <b>/mute</b>, <b>/warn</b>, etc.</p>
+      </div>
+    </div>
+
+    <!-- Leveling -->
+    <div id="leveling" class="section">
+      <h1>🏆 Leveling System</h1>
+      <div class="card">
+        <h3>Features</h3>
+        <p>• Gain XP by chatting</p>
+        <p>• Rank and leaderboard commands</p>
+        <p>• Admins can enable/disable leveling</p>
+      </div>
+    </div>
+
+    <!-- Moderation -->
+    <div id="moderation" class="section">
+      <h1>🔨 Moderation</h1>
+      <div class="card">
+        <h3>Available Tools</h3>
+        <p>• Lock/unlock channels</p>
+        <p>• Manage slowmode</p>
+        <p>• Kick, ban, mute users</p>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div id="settings" class="section">
+      <h1>⚙️ Server Settings</h1>
+      <div class="card">
+        <h3>Customize Rexo</h3>
+        <p>• Change prefix</p>
+        <p>• Set welcome channel</p>
+        <p>• Configure logs</p>
+      </div>
+    </div>
+
+    <!-- Logs -->
+    <div id="logs" class="section">
+      <h1>📑 Logs</h1>
+      <div class="card">
+        <h3>Activity Tracking</h3>
+        <p>• Message deletions</p>
+        <p>• Member joins/leaves</p>
+        <p>• Moderator actions</p>
+      </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    © 2025 Rexo Bot • <a href="tos.html" style="color:#58a6ff;">Terms of Service</a> • <a href="privacy.html" style="color:#58a6ff;">Privacy Policy</a>
+    © 2025 Rexo Bot • <a href="tos.html">Terms of Service</a> • <a href="privacy.html">Privacy Policy</a>
   </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
 </body>
 </html>

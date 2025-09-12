@@ -5,136 +5,165 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rexo Bot Dashboard</title>
   <style>
-    body {
+    /* ===== Global Styles ===== */
+    * {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0d1117;
-      color: #f0f6fc;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #0a0f1e;
+      color: #e0e6f0;
       display: flex;
       height: 100vh;
+      overflow: hidden;
     }
 
-    /* Sidebar */
+    /* ===== Sidebar ===== */
     .sidebar {
-      width: 250px;
-      background: #161b22;
+      width: 260px;
+      background: linear-gradient(180deg, #0d1730, #0a0f1e);
       display: flex;
       flex-direction: column;
-      padding: 20px;
-      border-right: 1px solid #21262d;
+      padding: 25px;
+      border-right: 1px solid #1f2a48;
+      animation: slideIn 0.6s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
     .sidebar h2 {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
       color: #58a6ff;
-      margin-bottom: 20px;
-      font-size: 1.4rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     .nav {
       list-style: none;
-      padding: 0;
-      margin: 0;
     }
     .nav li {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     .nav a {
-      color: #f0f6fc;
+      color: #e0e6f0;
       text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 6px;
       display: block;
-      transition: background 0.2s, transform 0.1s;
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: background 0.3s, transform 0.2s;
       cursor: pointer;
+      font-weight: 500;
     }
     .nav a:hover, .nav a.active {
-      background: #238636;
-      color: #ffffff;
-      transform: scale(1.03);
+      background: #1f3b70;
+      color: #fff;
+      transform: translateX(6px);
     }
 
-    /* Main content */
+    /* ===== Main Content ===== */
     .main {
       flex: 1;
-      padding: 30px;
+      padding: 35px;
       overflow-y: auto;
+      animation: fadeIn 0.6s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .main h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
       color: #58a6ff;
-      margin-bottom: 10px;
+      animation: fadeSlide 0.6s ease;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .card {
-      background: #161b22;
-      border: 1px solid #21262d;
-      border-radius: 8px;
-      padding: 20px;
+      background: #11182e;
+      border: 1px solid #1f2a48;
+      border-radius: 12px;
+      padding: 25px;
       margin-bottom: 20px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
     .card h3 {
-      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
       color: #58a6ff;
     }
+    .card p {
+      margin-bottom: 8px;
+      color: #c5cde0;
+      line-height: 1.5;
+    }
 
-    /* Hide/Show sections */
+    /* ===== Sections ===== */
     .section {
       display: none;
+      animation: fadeIn 0.5s ease;
     }
     .section.active {
       display: block;
     }
 
-    /* Footer */
+    /* ===== Footer ===== */
     footer {
       text-align: center;
       padding: 15px;
       font-size: 0.9rem;
       color: #8b949e;
-      border-top: 1px solid #21262d;
-      background: #0d1117;
+      border-top: 1px solid #1f2a48;
+      background: #0a0f1e;
       position: fixed;
       bottom: 0;
-      left: 250px;
+      left: 260px;
       right: 0;
     }
     footer a {
       color: #58a6ff;
       text-decoration: none;
+      transition: 0.2s;
     }
     footer a:hover {
       text-decoration: underline;
+      color: #79b8ff;
     }
   </style>
 </head>
 <body>
   <!-- Sidebar -->
   <div class="sidebar">
-    <h2>Rexo Dashboard</h2>
+    <h2>Rexo</h2>
     <ul class="nav">
       <li><a class="active" onclick="showSection('overview')">Overview</a></li>
       <li><a onclick="showSection('commands')">Commands</a></li>
       <li><a onclick="showSection('leveling')">Leveling</a></li>
       <li><a onclick="showSection('moderation')">Moderation</a></li>
-      <li><a onclick="showSection('settings')">Server Settings</a></li>
+      <li><a onclick="showSection('settings')">Settings</a></li>
       <li><a onclick="showSection('logs')">Logs</a></li>
     </ul>
   </div>
 
-  <!-- Main content -->
+  <!-- Main -->
   <div class="main">
     <!-- Overview -->
     <div id="overview" class="section active">
       <h1>Welcome to Rexo Dashboard</h1>
-      <p>Manage your server with Rexo, the professional moderation and utility bot.</p>
       <div class="card">
-        <h3>⚡ Quick Actions</h3>
-        <p>• View your server’s configuration</p>
-        <p>• Manage moderation settings</p>
-        <p>• Enable or disable leveling</p>
-        <p>• Explore all bot commands</p>
+        <h3>⚡ Quick Overview</h3>
+        <p>Manage moderation, utility, leveling, and server settings with ease.</p>
+        <p>Use the sidebar to explore each section and configure Rexo for your server.</p>
       </div>
     </div>
 
@@ -145,7 +174,7 @@
         <h3>Core</h3>
         <p><b>/ping</b> – Check bot latency</p>
         <p><b>/uptime</b> – Show uptime</p>
-        <p><b>/avatar</b> – Show a user’s avatar</p>
+        <p><b>/avatar</b> – Show user’s avatar</p>
       </div>
       <div class="card">
         <h3>Moderation</h3>
@@ -155,12 +184,12 @@
 
     <!-- Leveling -->
     <div id="leveling" class="section">
-      <h1>🏆 Leveling System</h1>
+      <h1>🏆 Leveling</h1>
       <div class="card">
-        <h3>Features</h3>
+        <h3>System</h3>
         <p>• Gain XP by chatting</p>
-        <p>• Rank and leaderboard commands</p>
-        <p>• Admins can enable/disable leveling</p>
+        <p>• View rank with <b>/rank</b></p>
+        <p>• Check leaderboard with <b>/leaderboard</b></p>
       </div>
     </div>
 
@@ -168,21 +197,21 @@
     <div id="moderation" class="section">
       <h1>🔨 Moderation</h1>
       <div class="card">
-        <h3>Available Tools</h3>
-        <p>• Lock/unlock channels</p>
-        <p>• Manage slowmode</p>
-        <p>• Kick, ban, mute users</p>
+        <h3>Tools</h3>
+        <p>• Lock/Unlock channels</p>
+        <p>• Kick, Ban, Mute, Warn users</p>
+        <p>• Slowmode control</p>
       </div>
     </div>
 
     <!-- Settings -->
     <div id="settings" class="section">
-      <h1>⚙️ Server Settings</h1>
+      <h1>⚙️ Settings</h1>
       <div class="card">
-        <h3>Customize Rexo</h3>
+        <h3>Server Config</h3>
         <p>• Change prefix</p>
         <p>• Set welcome channel</p>
-        <p>• Configure logs</p>
+        <p>• Set log channel</p>
       </div>
     </div>
 
@@ -190,7 +219,7 @@
     <div id="logs" class="section">
       <h1>📑 Logs</h1>
       <div class="card">
-        <h3>Activity Tracking</h3>
+        <h3>Tracking</h3>
         <p>• Message deletions</p>
         <p>• Member joins/leaves</p>
         <p>• Moderator actions</p>

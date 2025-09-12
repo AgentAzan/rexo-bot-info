@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rexo Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #0d1117;
+      color: #c9d1d9;
+    }
+    header {
+      background: #161b22;
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #238636;
+    }
+    header img {
+      height: 50px;
+    }
+    header nav a {
+      margin: 0 15px;
+      color: #c9d1d9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    header nav a:hover {
+      color: #58a6ff;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+    .card {
+      background: #161b22;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border: 1px solid #238636;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #58a6ff;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: #161b22;
+      border-top: 2px solid #238636;
+      margin-top: 40px;
+    }
+    .footer a {
+      color: #58a6ff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Rexo Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="commands.html">Commands</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="tos.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </header>
+
+  <section class="dashboard">
+    <div class="card">
+      <h3>🎛️ Moderation</h3>
+      <p>Manage bans, kicks, mutes, warnings and more.</p>
+      <p><a href="commands.html#moderation">View Commands →</a></p>
+    </div>
+
+    <div class="card">
+      <h3>⚡ Utilities</h3>
+      <p>Useful tools like ping, uptime, avatar, and memes.</p>
+      <p><a href="commands.html#utilities">View Commands →</a></p>
+    </div>
+
+    <div class="card">
+      <h3>📊 Leveling</h3>
+      <p>Track XP, levels, and leaderboards. Enable or disable leveling.</p>
+      <p><a href="commands.html#leveling">View Commands →</a></p>
+    </div>
+
+    <div class="card">
+      <h3>🔐 Channel Management</h3>
+      <p>Lock, unlock, slowmode, and manage channel settings.</p>
+      <p><a href="commands.html#channels">View Commands →</a></p>
+    </div>
+
+    <div class="card">
+      <h3>⚙️ Server Settings</h3>
+      <p>Configure prefixes, welcome channels, logs, and more.</p>
+      <p><a href="commands.html#settings">View Commands →</a></p>
+    </div>
+  </section>
+
+  <div class="footer">
+    <p>© 2025 Rexo Bot • <a href="tos.html">Terms of Service</a> • <a href="privacy.html">Privacy Policy</a></p>
+  </div>
+</body>
+</html>

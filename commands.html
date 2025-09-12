@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rexo Commands</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #0a192f, #112240);
+      color: #fff;
+    }
+    header {
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+    header h1 {
+      font-size: 3em;
+      color: #00aaff;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px;
+    }
+    .category {
+      background: #112d4e;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      padding: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    .category:hover {
+      background: #1b3a66;
+    }
+    .category h2 {
+      margin: 0;
+      font-size: 1.5em;
+      color: #00aaff;
+    }
+    .commands-list {
+      display: none;
+      padding: 15px 20px;
+      margin-top: 10px;
+      background: #0d213f;
+      border-radius: 8px;
+      animation: fadeIn 0.4s ease;
+    }
+    .commands-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    code {
+      background: #1b3a66;
+      padding: 3px 6px;
+      border-radius: 5px;
+      font-size: 0.95em;
+      color: #ffd700;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📜 Rexo Commands</h1>
+    <p>Browse all commands available in Rexo, grouped by category.</p>
+  </header>
+
+  <div class="container">
+    <div class="category" onclick="toggleCommands('leveling')">
+      📊 <h2>Leveling</h2>
+      <div id="leveling" class="commands-list">
+        <ul>
+          <li><code>..rank</code> / <code>/rank</code> → Show user’s level & XP.</li>
+          <li><code>..leaderboard</code> / <code>/leaderboard</code> → Top 10 XP leaderboard.</li>
+          <li><code>..enableleveling</code> / <code>/enableleveling</code> → Enable leveling system (admin).</li>
+          <li><code>..disableleveling</code> / <code>/disableleveling</code> → Disable leveling system (admin).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category" onclick="toggleCommands('moderation')">
+      ⚔️ <h2>Moderation</h2>
+      <div id="moderation" class="commands-list">
+        <ul>
+          <li><code>..kick</code> / <code>/kick</code> → Kick a user.</li>
+          <li><code>..ban</code> / <code>/ban</code> → Ban a user.</li>
+          <li><code>..mute</code> / <code>/mute</code> → Timeout a user.</li>
+          <li><code>..unmute</code> / <code>/unmute</code> → Remove timeout.</li>
+          <li><code>..warn</code> / <code>/warn</code> → Warn a user.</li>
+          <li><code>..unwarn</code> / <code>/unwarn</code> → Remove last warning.</li>
+          <li><code>..warnings</code> / <code>/warnings</code> → View warnings for a user.</li>
+          <li><code>..clear</code> / <code>/clear</code> → Delete messages.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category" onclick="toggleCommands('utility')">
+      🔧 <h2>Utility</h2>
+      <div id="utility" class="commands-list">
+        <ul>
+          <li><code>..ping</code> / <code>/ping</code> → Check latency.</li>
+          <li><code>..uptime</code> / <code>/uptime</code> → Show bot uptime.</li>
+          <li><code>..avatar</code> / <code>/avatar</code> → Show user avatar.</li>
+          <li><code>..userinfo</code> / <code>/userinfo</code> → Show info about a user.</li>
+          <li><code>..serverinfo</code> / <code>/serverinfo</code> → Show server stats.</li>
+          <li><code>..meme</code> / <code>/meme</code> → Fetch a random meme.</li>
+          <li><code>..test</code> / <code>/test</code> → Simulate welcome message.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category" onclick="toggleCommands('channelrole')">
+      🔒 <h2>Channel & Role</h2>
+      <div id="channelrole" class="commands-list">
+        <ul>
+          <li><code>..lock</code> / <code>/lock</code> → Lock a channel.</li>
+          <li><code>..unlock</code> / <code>/unlock</code> → Unlock a channel.</li>
+          <li><code>..slowmode</code> / <code>/slowmode</code> → Set slowmode.</li>
+          <li><code>..unslowmode</code> / <code>/unslowmode</code> → Disable slowmode.</li>
+          <li><code>..move</code> / <code>/move</code> → Move a user to voice channel.</li>
+          <li><code>..nick</code> / <code>/nick</code> → Change a user’s nickname.</li>
+          <li><code>..roleinfo</code> / <code>/roleinfo</code> → Show role info.</li>
+          <li><code>..channelinfo</code> / <code>/channelinfo</code> → Show channel info.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="category" onclick="toggleCommands('settings')">
+      ⚙️ <h2>Server Settings</h2>
+      <div id="settings" class="commands-list">
+        <ul>
+          <li><code>..prefix</code> / <code>/prefix</code> → Change prefix for server.</li>
+          <li><code>..setwelcome</code> / <code>/setwelcome</code> → Set welcome channel.</li>
+          <li><code>..log</code> / <code>/log</code> → Set log channel.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleCommands(id) {
+      const el = document.getElementById(id);
+      if (el.style.display === "block") {
+        el.style.display = "none";
+      } else {
+        document.querySelectorAll(".commands-list").forEach(div => div.style.display = "none");
+        el.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
